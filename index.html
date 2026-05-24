@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduWallet — ProofChain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- ethers.js v6 — conexão com blockchain -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="header__logo">
+      <span class="header__logo-icon">🎓</span>
+      <span class="header__logo-text">Edu<strong>Wallet</strong></span>
+    </div>
+    <div class="header__right">
+      <span class="header__badge">PROOFCHAIN · TESTNET</span>
+      <button class="btn-wallet" id="btn-wallet" onclick="conectarCarteira()">
+        <span id="wallet-icon">🦊</span>
+        <span id="wallet-label">Conectar Carteira</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <p class="hero__eyebrow">Verificação de diplomas na blockchain</p>
+    <h1 class="hero__title">Credenciais <em>imutáveis</em>,<br/>verificação instantânea</h1>
+    <p class="hero__sub">Registre diplomas e autentique documentos com tecnologia blockchain. Transparente, seguro e auditável.</p>
+  </section>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- ÁREA DA INSTITUIÇÃO -->
+    <section class="card" id="section-instituicao">
+      <div class="card__header">
+        <span class="card__icon">🏛️</span>
+        <div>
+          <h2 class="card__title">Área da Instituição</h2>
+          <p class="card__desc">Registre o diploma do aluno na blockchain</p>
+        </div>
+      </div>
+
+      <div class="card__body">
+        <label class="field__label" for="inst-nome">Nome do Aluno</label>
+        <input class="field__input" type="text" id="inst-nome" placeholder="Ex: Maria Fernanda Silva" />
+
+        <label class="field__label" for="inst-nome-inst">Instituição Emissora</label>
+        <input class="field__input" type="text" id="inst-nome-inst" placeholder="Ex: Universidade Federal do Brasil" />
+
+        <label class="field__label" for="inst-file">
+          Arquivo do Diploma <span class="field__hint">PDF</span>
+        </label>
+        <div class="dropzone" id="dz-inst">
+          <input type="file" id="inst-file" accept=".pdf" />
+          <span class="dropzone__icon">📄</span>
+          <span class="dropzone__text">Arraste o PDF ou clique para selecionar</span>
+          <span class="dropzone__filename" id="inst-filename"></span>
+        </div>
+
+        <div class="hash-box" id="inst-hash-box">
+          <span class="hash-box__label">SHA-256 HASH</span>
+          <span class="hash-box__value" id="inst-hash-value">—</span>
+          <button class="hash-box__copy" id="btn-copy-hash" onclick="copiarHash()" title="Copiar hash">
+            <span id="copy-icon">⎘</span> Copiar
+          </button>
+        </div>
+
+        <div class="divider">ou insira o hash manualmente</div>
+
+        <label class="field__label" for="inst-hash-manual">
+          Código Hash do Diploma <span class="field__hint">SHA-256</span>
+        </label>
+        <input
+          class="field__input field__input--mono"
+          type="text"
+          id="inst-hash-manual"
+          placeholder="Cole aqui o hash SHA-256 do diploma..."
+        />
+
+        <button class="btn btn--primary" id="btn-registrar" disabled>
+          <span class="btn__spinner" id="spin-inst"></span>
+          <span id="btn-inst-label">📋 Registrar Diploma</span>
+        </button>
+
+        <div class="result result--success" id="inst-result">
+          <span class="result__icon">✅</span>
+          <div>
+            <p class="result__title">Diploma registrado com sucesso!</p>
+            <p class="result__sub" id="inst-result-sub">—</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ÁREA DA EMPRESA / RECRUTADOR -->
+    <section class="card" id="section-empresa">
+      <div class="card__header">
+        <span class="card__icon">🔍</span>
+        <div>
+          <h2 class="card__title">Área da Empresa</h2>
+          <p class="card__desc">Valide a autenticidade de um diploma</p>
+        </div>
+      </div>
+
+      <div class="card__body">
+        <label class="field__label" for="emp-file">
+          Anexar PDF do Candidato <span class="field__hint">ou informe o hash</span>
+        </label>
+        <div class="dropzone" id="dz-emp">
+          <input type="file" id="emp-file" accept=".pdf" />
+          <span class="dropzone__icon">🔎</span>
+          <span class="dropzone__text">Arraste o PDF para gerar o hash</span>
+          <span class="dropzone__filename" id="emp-filename"></span>
+        </div>
+
+        <div class="divider">ou</div>
+
+        <label class="field__label" for="emp-hash">Código Hash <span class="field__hint">SHA-256</span></label>
+        <input class="field__input field__input--mono" type="text" id="emp-hash" placeholder="Cole aqui o hash do diploma..." />
+
+        <button class="btn btn--primary" id="btn-validar">
+          <span class="btn__spinner" id="spin-emp"></span>
+          <span id="btn-emp-label">🔍 Verificar Autenticidade</span>
+        </button>
+
+        <div class="result result--success" id="emp-result-ok">
+          <span class="result__icon">✅</span>
+          <div>
+            <p class="result__title">Diploma Autêntico e Verificado</p>
+            <p class="result__sub" id="emp-result-ok-sub">—</p>
+          </div>
+        </div>
+
+        <div class="result result--error" id="emp-result-fail">
+          <span class="result__icon">❌</span>
+          <div>
+            <p class="result__title">Documento não encontrado</p>
+            <p class="result__sub">Este hash não existe na blockchain. O documento pode ser falso ou ainda não foi registrado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast">
+    <span class="toast__icon" id="toast-icon"></span>
+    <span class="toast__msg" id="toast-msg"></span>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <span class="footer__text">EduWallet · ProofChain · HackWeb Web 3.0 · Residência TIC29</span>
+    <span class="footer__chain" id="footer-chain">
+      <span class="footer__dot" id="footer-dot"></span>
+      <span id="footer-net">Sepolia Testnet · Aguardando carteira</span>
+    </span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
