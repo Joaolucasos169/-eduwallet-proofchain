@@ -27,7 +27,7 @@
  * Substituir após o deploy no Remix IDE.
  * Exemplo: "0xAbC123...def456"
  */
-const CONTRACT_ADDRESS = "COLE_O_ENDERECO_DO_CONTRATO_AQUI";
+const CONTRACT_ADDRESS = "0xbcc2610B5d6C940e57fC7D2B94A5b436b7e471C6";
 
 /**
  * ABI mínima do contrato EduWallet.
