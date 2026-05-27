@@ -3,6 +3,7 @@
 > **Projeto desenvolvido para o HackWeb Web 3.0 · Residência TIC29**
 > Uma solução descentralizada para emissão, armazenamento e verificação instantânea de diplomas acadêmicos utilizando a tecnologia Blockchain.
 
+🌍 **Acesse o projeto online:** [eduwallet-proofchain.vercel.app](https://eduwallet-proofchain.vercel.app/)
 ---
 
 ## 📄 Sobre o Projeto
