@@ -16,7 +16,7 @@ Através da imutabilidade da rede blockchain, o sistema atua como um cartório d
 
 ## 🎯 Para que Serve?
 
-* **Para Instituições de Ensino (Ex: SENAC, Universidades):** Permite registrar de forma perene e inviolável que um aluno realmente se formou e obteve aquela qualificação, associando o documento digital à assinatura da instituição na rede.
+* **Para Instituições de Ensino (Ex: Universidades):** Permite registrar de forma perene e inviolável que um aluno realmente se formou e obteve aquela qualificação, associando o documento digital à assinatura da instituição na rede.
 * **Para Alunos/Candidatos:** Garante a posse de uma credencial digital auditável e infalsificável, pronta para ser apresentada ao mercado de trabalho.
 * **Para Empresas e Recrutadores:** Elimina o tempo de espera de auditoria de currículos. Permite verificar de forma imediata se o diploma apresentado por um candidato é legítimo ou se sofreu qualquer tipo de alteração pós-emissão.
 
