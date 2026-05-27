@@ -93,7 +93,7 @@ Para rodar este projeto na sua máquina, é obrigatório ter a extensão da cart
 Clone este repositório para a sua máquina executando o comando no terminal:
 
 ```Bash
-git clone [https://github.com/Joaolucasos169/eduwallet-proofchain.git](https://github.com/Joaolucasos169/eduwallet-proofchain.git)
+git clone [https://github.com/Joaolucasos169/eduwallet-proofchain.git]
 ```
 
 1. Abra a pasta clonada do projeto no seu VS Code.
