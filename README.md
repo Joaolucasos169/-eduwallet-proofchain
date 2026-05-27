@@ -1,4 +1,4 @@
-readme_content = """# 🎓 EduWallet — ProofChain
+# 🎓 EduWallet — ProofChain
 
 > **Projeto desenvolvido para o HackWeb Web 3.0 · Residência TIC29**
 > Uma solução descentralizada para emissão, armazenamento e verificação instantânea de diplomas acadêmicos utilizando a tecnologia Blockchain.
